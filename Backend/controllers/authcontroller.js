@@ -1,5 +1,6 @@
 import User from '../Models/userModel.js'
-
+import bcrypt from "bcryptjs";
+import generateTokenAndSetCookie from '../utils/generateTokens.js';
 
 export const signup = async(req, res) =>{
    
@@ -15,6 +16,9 @@ export const signup = async(req, res) =>{
             return res.status(400).json({error:"Username already exists"})
         }
         // ??hash password={}
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
         // https://avatar-placeholder.iran.liara.run
 
         const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${username}`
@@ -23,18 +27,31 @@ export const signup = async(req, res) =>{
         const newUser = new User({
           fullName,
           username,
-          password,
+          password: hashedPassword,
           gender,
           profilePic: gender === "male" ? boyProfilePic : girlProfilePic,
         })
 
-        await newUser.save();
-        res.status(201).json({
-            _id: newUser._id,
-            fullName: newUser.fullName,
-            username: newUser.username,
-            profilePic: newUser.profilePic
-        })
+
+        if(newUser){
+
+            generateTokenAndSetCookie(newUser._id, res);
+
+            await newUser.save();
+            res.status(201).json({
+                _id: newUser._id,
+                fullName: newUser.fullName,
+                username: newUser.username,
+                profilePic: newUser.profilePic
+            });
+        }
+        else{
+            res.status(400).json({error: "Invalid user data"});
+        }
+
+       
+
+
 
     } catch (error) {
         console.log("Error in signup controller", error.message);
