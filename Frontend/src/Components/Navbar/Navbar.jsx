@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "../App.css";
+// import "../App.css";
 const Navbar = () => {
 
   // const [isSticky, setSticky] = useState(false);
@@ -23,9 +23,11 @@ const Navbar = () => {
   
   return (
     <>
+      
       <div className="navbar bg-base-100 px-10">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">Chat Application</a>
+          
+          <a className="btn btn-ghost text-xl mt-3">Chat Application</a>
         </div>
         <div className="flex-none">
           <div className="dropdown dropdown-end"></div>
@@ -59,6 +61,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+      \
     </>
   );
 };
