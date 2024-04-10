@@ -6,8 +6,8 @@ import { FaFacebook } from "react-icons/fa";
 const Login = () => {
   return (
     <>
-      <div className="card justify-center m-auto top-10 shrink-0 w-full max-w-md shadow-xl bg-base-100">
-        <h2 className="font-bold text-2xl ml-4">Please Login!</h2>
+      <div className="card justify-center m-auto top-10 shrink-0 w-full max-w-md shadow-xl bg-base-100"  style={{background:"rgba(238,237,228,0.02)", border:"2px solid rgba(255,255,255,0.2)", backdropFilter:"blur(6px)", }}>
+        <h2 className="font-bold text-2xl ml-4  mt-3" >Please Login!</h2>
         <form className="card-body p-5 gap-0">
           <div className="form-control">
             <label className="label">
@@ -37,7 +37,7 @@ const Login = () => {
             </label>
           </div>
           <div className="form-control mt-6">
-            <button className="btn bg-[#00FFFF]">Login</button>
+            <button className="btn bg-cyan-800 text-white">Login</button>
           </div>
           <p className="text-sm m-1 text-center">
             Don't have account?
