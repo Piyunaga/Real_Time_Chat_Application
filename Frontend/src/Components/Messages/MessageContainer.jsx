@@ -7,14 +7,14 @@ import {TiMessages} from "react-icons/ti";
 const MessageContainer = () => {
   const noChatSelected = false;
   return (
-        <div className="md:min-w-[450px] flex flex-col h-full ">
+        <div className="md:min-w-[450px] flex flex-col h-full "  style={{background:"rgba(238,237,228,0.02)", border:"2px solid rgba(255,255,255,0.2)", backdropFilter:"blur(6px)", }}>
         {noChatSelected ? (
           <NoChatSelected />
         ) : (
           <>
-            <div className="px-4 py-2 mb-2 bg-gradient-to-r from-indigo-300 from-10% via-sky-300 via-30% to-emerald-500 to-90% ... ">
-              <span className="label-text font-bold text-black">To:</span>{" "}
-              <span className="text-gray-900 font-bold">Rohit Sharma</span>
+            <div className="px-4 py-2 mb-2 bg-slate-700">
+              <span className="label-text font-bold text-white">To:</span>{" "}
+              <span className="text-white font-bold">Rohit Sharma</span>
             </div>
             <Messages />
             <MessageInput />
