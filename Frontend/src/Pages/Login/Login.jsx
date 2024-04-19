@@ -2,6 +2,7 @@ import React from "react";
 import { FaGoogle } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
@@ -31,9 +32,9 @@ const Login = () => {
               required
             />
             <label className="label">
-              <a href="#" className="label-text-alt link link-hover">
+              <Link to="/signup" className="label-text-alt link link-hover">
                 Forgot password?
-              </a>
+              </Link>
             </label>
           </div>
           <div className="form-control mt-6">
@@ -42,9 +43,9 @@ const Login = () => {
           <p className="text-sm m-1 text-center">
             Don't have account?
             <span className="p-1">
-              <a href="/signup" className="underline">
+              <Link to="/signup" className="underline">
                 signup
-              </a>
+              </Link>
             </span>
           </p>
         </form>

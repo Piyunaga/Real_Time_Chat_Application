@@ -2,6 +2,7 @@ import React from "react";
 import { FaGoogle } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 
 const Signup = (props) => {
@@ -60,9 +61,9 @@ const Signup = (props) => {
           <p className="text-sm m-1 text-center">
             You have an account?
             <span className="p-1">
-              <a href="/login" className="underline">
+              <Link to="/login" className="underline">
                 login
-              </a>
+              </Link>
             </span>
           </p>
         </form>
