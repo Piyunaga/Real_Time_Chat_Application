@@ -1,11 +1,31 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import { FaGoogle } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import useSignup from "../../Hooks/useSignup";
+import GenderCheckbox from "./GenderCheckbox";
 
 
 const Signup = (props) => {
+  const [inputs, setInputs] = useState({
+    fullName: '',
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    gender: '',
+  });
+
+  const handleCheckboxChange = (gender) => {
+    setInputs({...inputs,gender})
+  }
+  const {loading, signup} = useSignup()
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    await signup(inputs)
+  }
  
   
 
@@ -16,7 +36,7 @@ const Signup = (props) => {
         <h2 className="font-bold text-2xl ml-4 mt-3 text-slate-300">
           Welcome to Chat Application!
         </h2>
-        <form className="card-body p-5 gap-0">
+        <form className="card-body p-5 gap-0" onSubmit={handleSubmit}>
           <div className="form-control">
             <label className="label">
               <span className="label-text">Full Name</span>
@@ -26,6 +46,21 @@ const Signup = (props) => {
               placeholder="Full Name"
               className="input input-bordered"
               required
+              value={inputs.fullName}
+              onChange={(e)=> setInputs({...inputs,fullName:e.target.value})}
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">username</span>
+            </label>
+            <input
+              type="text"
+              placeholder="username"
+              className="input input-bordered"
+              required
+              value={inputs.username}
+              onChange={(e)=> setInputs({...inputs,username:e.target.value})}
             />
           </div>
           <div className="form-control">
@@ -37,6 +72,8 @@ const Signup = (props) => {
               placeholder="email"
               className="input input-bordered"
               required
+              value={inputs.email}
+              onChange={(e)=> setInputs({...inputs,email:e.target.value})}
             />
           </div>
           <div className="form-control">
@@ -48,6 +85,8 @@ const Signup = (props) => {
               placeholder="Password"
               className="input input-bordered"
               required
+              value={inputs.password}
+              onChange={(e)=> setInputs({...inputs,password:e.target.value})}
             />
             {/* <label className="label">
               <a href="#" className="label-text-alt link link-hover">
@@ -55,6 +94,27 @@ const Signup = (props) => {
               </a>
             </label> */}
           </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Confirm Password</span>
+            </label>
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              className="input input-bordered"
+              required
+              value={inputs.confirmPassword}
+              onChange={(e)=> setInputs({...inputs,confirmPassword:e.target.value})}
+            />
+            {/* <label className="label">
+              <a href="#" className="label-text-alt link link-hover">
+                Forgot password?
+              </a>
+            </label> */}
+          </div>
+
+          <GenderCheckbox  selectedGender = {inputs.gender} onCheckboxChange= {handleCheckboxChange}/>
+
           <div className="form-control mt-6">
             <button className="btn bg-cyan-800 hover:bg-cyan-500 text-white">Create an Account</button>
           </div>

@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 
 import Signup from "./Pages/Signup/Signup";
 import Login from "./Pages/Login/Login";
+import {Toaster} from 'react-hot-toast';
 // import Home from "./Pages/Home/Home";
 // import Navbar from "./Components/Navbar/Navbar";
 
@@ -18,6 +19,7 @@ function App() {
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<Signup/>}/>
       </Routes>
+      <Toaster/>
     </div>
     </>
   );
