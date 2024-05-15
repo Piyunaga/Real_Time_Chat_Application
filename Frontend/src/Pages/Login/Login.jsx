@@ -31,11 +31,7 @@ const Login = () => {
               className="input input-bordered"
               required
             />
-            <label className="label">
-              <Link to="/signup" className="label-text-alt link link-hover">
-                Forgot password?
-              </Link>
-            </label>
+          
           </div>
           <div className="form-control mt-6">
             <button className="btn bg-cyan-800 text-white">Login</button>
