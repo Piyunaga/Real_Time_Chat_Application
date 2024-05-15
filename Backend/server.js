@@ -5,6 +5,7 @@ import messageRoutes from "./routes/messageroutes.js"
 import userRoutes from "./routes/userroutes.js"
 import connectToMongodb from "./DB/connectToMongodb.js";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -12,6 +13,7 @@ const PORT = process.env.PORT || 5000;
 dotenv.config();
 
 app.use(express.json());  //parse incoming request with json payloads
+app.use(cors());       //there were some problems fetching from localhost so had to add cors
 app.use(cookieParser());
 app.use("/api/auth", authRoutes)
 app.use("/api/messages", messageRoutes)
