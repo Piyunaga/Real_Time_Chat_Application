@@ -1,9 +1,11 @@
 import { set } from 'mongoose';
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
+import { userAuthContext } from '../context/AuthContext';
 
 const useSignup = () => {
-    const[loading, setloading] = useState(false);
+    const [loading, setloading] = useState(false);
+        const [setAuthUser] = userAuthContext() 
 
     const signup = async({fullName, email, password, confirmPassword, gender}) => {
         const success = handleInputErrors({fullName, email, password, confirmPassword, gender})
@@ -22,8 +24,8 @@ const useSignup = () => {
             if(data.error){
                 throw new Error{data.error}
             }
-            
-            console.log(data)
+            localStorage.setItem("chat-user",JSON.stringify(data))
+            setAuthUser(data)
         }
         catch (error) {
             toast.error(error.message)
