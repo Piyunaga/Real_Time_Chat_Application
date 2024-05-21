@@ -10,12 +10,11 @@ import GenderCheckbox from "./GenderCheckbox";
 
 const Signup = (props) => {
   const [inputs, setInputs] = useState({
-    fullName: '',
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    gender: '',
+    fullName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    gender: "",
   });
 
   const handleCheckboxChange = (gender) => {
@@ -48,19 +47,6 @@ const Signup = (props) => {
               required
               value={inputs.fullName}
               onChange={(e)=> setInputs({...inputs,fullName:e.target.value})}
-            />
-          </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">username</span>
-            </label>
-            <input
-              type="text"
-              placeholder="username"
-              className="input input-bordered"
-              required
-              value={inputs.username}
-              onChange={(e)=> setInputs({...inputs,username:e.target.value})}
             />
           </div>
           <div className="form-control">
