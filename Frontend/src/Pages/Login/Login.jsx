@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaGoogle } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import useLogin from "../../Hooks/useLogin";
 
 const Login = () => {
-  return (
+
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const {loading, login} =useLogin()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await login(email, password)
+  }
+   return (
     <>
       <div className="card justify-center m-auto top-10 shrink-0 w-full max-w-md shadow-xl bg-base-100"  style={{background:"rgba(238,237,228,0.02)", border:"2px solid rgba(255,255,255,0.2)", backdropFilter:"blur(6px)", }}>
         <h2 className="font-bold text-2xl ml-4  mt-3" >Please Login!</h2>
@@ -18,6 +30,8 @@ const Login = () => {
               type="email"
               placeholder="email"
               className="input input-bordered"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
@@ -29,12 +43,17 @@ const Login = () => {
               type="password"
               placeholder="Password"
               className="input input-bordered"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
           
           </div>
           <div className="form-control mt-6">
-            <button className="btn bg-cyan-800 text-white">Login</button>
+            <button className="btn bg-cyan-800 text-white"
+            disabled= {loading} >
+              {loading ? <span className="loading loading-spinner"></span> : "Login"}
+            </button>
           </div>
           <p className="text-sm m-1 text-center">
             Don't have account?
