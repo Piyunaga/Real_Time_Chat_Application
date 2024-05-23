@@ -4,12 +4,14 @@ import { userAuthContext } from '../context/AuthContext'
 
 const useLogin = () => {
 
-  const success = handleInputErrors({email, password})
-  if(!success) return; 
+  
   const [loading, setLoading] = useState(false)
   const {setAuthUser}= userAuthContext()
 
   const login = async (email, password) => {
+    const success = handleInputErrors({email, password})
+    if(!success) return;
+    setLoading(true); 
     try {
         const res = await fetch("/api/auth/login", {
             method: "POST",

@@ -3,7 +3,6 @@ import { FaGoogle } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import useLogin from "../../Hooks/useLogin";
 
 const Login = () => {
