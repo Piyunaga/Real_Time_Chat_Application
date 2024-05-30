@@ -10,12 +10,11 @@ import GenderCheckbox from "./GenderCheckbox";
 
 const Signup = (props) => {
   const [inputs, setInputs] = useState({
-    fullName: '',
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    gender: '',
+    fullName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    gender: "",
   });
 
   const handleCheckboxChange = (gender) => {
@@ -48,19 +47,6 @@ const Signup = (props) => {
               required
               value={inputs.fullName}
               onChange={(e)=> setInputs({...inputs,fullName:e.target.value})}
-            />
-          </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">username</span>
-            </label>
-            <input
-              type="text"
-              placeholder="username"
-              className="input input-bordered"
-              required
-              value={inputs.username}
-              onChange={(e)=> setInputs({...inputs,username:e.target.value})}
             />
           </div>
           <div className="form-control">
@@ -116,7 +102,10 @@ const Signup = (props) => {
           <GenderCheckbox  selectedGender = {inputs.gender} onCheckboxChange= {handleCheckboxChange}/>
 
           <div className="form-control mt-6">
-            <button className="btn bg-cyan-800 hover:bg-cyan-500 text-white">Create an Account</button>
+            <button className="btn bg-cyan-800 hover:bg-cyan-500 text-white"
+            disabled={loading}>
+              {loading ? <span className="loading loading-spinner"></span> : "Sign up"}
+            </button>
           </div>
           <p className="text-sm m-1 text-center">
             You have an account?

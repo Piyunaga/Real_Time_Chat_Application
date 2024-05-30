@@ -1,22 +1,31 @@
+import { set } from 'mongoose';
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
+import { userAuthContext } from '../context/AuthContext';
 
 const useSignup = () => {
-    const[loading, setloading] = useState(false);
+    const [loading, setloading] = useState(false);
+        const {setAuthUser} = userAuthContext() 
 
-    const signup = async({fullName, username, email, password, confirmPassword, gender}) => {
-        const success = handleInputErrors({fullName, username, email, password, confirmPassword, gender})
+    const signup = async({fullName, email, password, confirmPassword, gender}) => {
+        const success = handleInputErrors({fullName, email, password, confirmPassword, gender})
+
         if(!success) return;
 
+        setloading(true);
         try {
-            const res = await fetch("http://localhost:5000/api/auth/signup", {
+            const res = await fetch("/api/auth/signup", {
                 method: "POST",
                 headers: {"Content-Type" : "application/json"},
-                body: JSON.stringify({fullName, username, email, password, confirmPassword, gender})
+                body: JSON.stringify({fullName, email, password, confirmPassword, gender})
             })
 
             const data = await res.json();
-            console.log(data)
+            if(data.error){
+                throw new Error(data.error);
+            }
+            localStorage.setItem("chat-user",JSON.stringify(data))
+            setAuthUser(data)
         }
         catch (error) {
             toast.error(error.message)
@@ -31,8 +40,8 @@ const useSignup = () => {
 export default useSignup
 
 
-function handleInputErrors({fullName, username, email, password, confirmPassword, gender}) {
-    if (!fullName ||!username || !email || !password || !confirmPassword || !gender ) {
+function handleInputErrors({fullName, email, password, confirmPassword, gender}) {
+    if (!fullName || !email || !password || !confirmPassword || !gender ) {
         toast.error('Please fill in all fields!')
         return false
     }
