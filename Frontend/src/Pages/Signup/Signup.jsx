@@ -1,8 +1,8 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import { FaGoogle } from "react-icons/fa6";
-import { FaGithub } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
+import {  useState } from "react";
+// import { FaGoogle } from "react-icons/fa6";
+// import { FaGithub } from "react-icons/fa";
+// import { FaFacebook } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useSignup from "../../Hooks/useSignup";
 import GenderCheckbox from "./GenderCheckbox";
@@ -17,10 +17,11 @@ const Signup = (props) => {
     gender: "",
   });
 
+  const {loading, signup} = useSignup()
+  
   const handleCheckboxChange = (gender) => {
     setInputs({...inputs,gender})
   }
-  const {loading, signup} = useSignup()
   const handleSubmit = async(e) => {
     e.preventDefault();
     await signup(inputs)

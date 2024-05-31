@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { IoSearchSharp } from "react-icons/io5";
 import useConversation from '../../zustand/useConversation';
-import useGetMessages from '../../Hooks/useGetMessages';
-import useGetConversation from '../../Hooks/useGetConversations'
+// import useGetMessages from '../../Hooks/useGetMessages';
+import useGetConversations from '../../Hooks/useGetConversations'
 import toast from 'react-hot-toast';
 
 
 const SearchInput = () => {
   const [search, setSearch] = useState(""); 
   const {setSelectedConversation}= useConversation();
-  const {conversation}=useGetConversation();  
+   const { conversations } = useGetConversations();  
   const handleSubmit = (e) => {
     e.preventDefault();
     if(!search) return;
