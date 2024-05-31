@@ -1,14 +1,14 @@
 import { set } from 'mongoose';
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
-import { userAuthContext } from '../context/AuthContext';
+import { useAuthContext } from '../context/AuthContext';
 
 const useSignup = () => {
     const [loading, setloading] = useState(false);
-        const {setAuthUser} = userAuthContext() 
+        const {setAuthUser} = useAuthContext() 
 
-    const signup = async({fullName, email, password, confirmPassword, gender}) => {
-        const success = handleInputErrors({fullName, email, password, confirmPassword, gender})
+    const signup = async({fullName, username, password, confirmPassword, gender}) => {
+        const success = handleInputErrors({fullName, username, password, confirmPassword, gender})
 
         if(!success) return;
 
@@ -17,7 +17,7 @@ const useSignup = () => {
             const res = await fetch("/api/auth/signup", {
                 method: "POST",
                 headers: {"Content-Type" : "application/json"},
-                body: JSON.stringify({fullName, email, password, confirmPassword, gender})
+                body: JSON.stringify({fullName, username, password, confirmPassword, gender})
             })
 
             const data = await res.json();
@@ -40,8 +40,8 @@ const useSignup = () => {
 export default useSignup
 
 
-function handleInputErrors({fullName, email, password, confirmPassword, gender}) {
-    if (!fullName || !email || !password || !confirmPassword || !gender ) {
+function handleInputErrors({fullName, username, password, confirmPassword, gender}) {
+    if (!fullName || !username || !password || !confirmPassword || !gender ) {
         toast.error('Please fill in all fields!')
         return false
     }

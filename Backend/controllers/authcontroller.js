@@ -5,13 +5,13 @@ import generateTokenAndSetCookie from '../utils/generateTokens.js';
 export const signup = async(req, res) =>{
    
     try {
-        const { fullName, email, password, confirmPassword, gender} = req.body;
+        const { fullName, username, password, confirmPassword, gender} = req.body;
        
         if(password !== confirmPassword){
             return res.status(400).json({error:"Password do not match"})
         }
 
-        const user = await User.findOne({email})
+        const user = await User.findOne({username})
         if(user){
             return res.status(400).json({error:"Username already exists"})
         }
@@ -21,12 +21,12 @@ export const signup = async(req, res) =>{
 
         // https://avatar-placeholder.iran.liara.run
 
-        const boyProfilePic = `https://avatar.iran.liara.run/public/boy?email=${email}`
-        const girlProfilePic = `https://avatar.iran.liara.run/public/girl?email=${email}`
+        const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${username}`
+        const girlProfilePic = `https://avatar.iran.liara.run/public/girl?username=${username}`
 
         const newUser = new User({
           fullName,
-          email,
+          username,
           password: hashedPassword,
           gender,
           profilePic: gender === "male" ? boyProfilePic : girlProfilePic,
@@ -41,7 +41,7 @@ export const signup = async(req, res) =>{
             res.status(201).json({
                 _id: newUser._id,
                 fullName: newUser.fullName,
-                email: newUser.email,
+                username: newUser.username,
                 profilePic: newUser.profilePic
             });
         }
@@ -62,12 +62,12 @@ export const signup = async(req, res) =>{
 export const login = async(req, res) =>{
    try {
 
-    const {email, password} = req.body;
-    const user = await User.findOne({email});
+    const {username, password} = req.body;
+    const user = await User.findOne({username});
     const isPasswordCorrect = await bcrypt.compare(password, user?.password || "");
 
     if(!user || !isPasswordCorrect){
-        return res.status(400).json({error: "Invalid email or password"});
+        return res.status(400).json({error: "Invalid username or password"});
     }
 
     generateTokenAndSetCookie(user._id, res);
@@ -75,7 +75,7 @@ export const login = async(req, res) =>{
     res.status(200).json({
         _id: user._id,
         fullName: user.fullName,
-        email: user.email,
+        username: user.username,
         profilePic: user.profilePic
     });
     

@@ -11,7 +11,7 @@ import GenderCheckbox from "./GenderCheckbox";
 const Signup = (props) => {
   const [inputs, setInputs] = useState({
     fullName: "",
-    email: "",
+    username: "",
     password: "",
     confirmPassword: "",
     gender: "",
@@ -51,15 +51,15 @@ const Signup = (props) => {
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Email</span>
+              <span className="label-text">Username</span>
             </label>
             <input
-              type="email"
-              placeholder="email"
+              type="text"
+              placeholder="username"
               className="input input-bordered"
               required
-              value={inputs.email}
-              onChange={(e)=> setInputs({...inputs,email:e.target.value})}
+              value={inputs.username}
+              onChange={(e)=> setInputs({...inputs,username:e.target.value})}
             />
           </div>
           <div className="form-control">
@@ -116,7 +116,7 @@ const Signup = (props) => {
             </span>
           </p>
         </form>
-        <div className="text-center space-x-2 mb-4">
+        {/* <div className="text-center space-x-2 mb-4">
           <button className="p-3 rounded-full bg-[#333] hover:bg-[#00FFFF]">
             <FaGoogle className="h-5 w-5 text-white" />
           </button>
@@ -126,7 +126,7 @@ const Signup = (props) => {
           <button className="p-3 rounded-full bg-[#333] hover:text-white hover:bg-[#00FFFF]">
             <FaFacebook className="h-5 w-5 text-white" />
           </button>
-        </div>
+        </div> */}
       </div>
       </div>
     </>

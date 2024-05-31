@@ -5,20 +5,15 @@ import { Navigate, Route, Routes } from "react-router-dom";
 
 import Signup from "./Pages/Signup/Signup";
 import Login from "./Pages/Login/Login";
-<<<<<<< HEAD
-import {Toaster} from 'react-hot-toast';
-// import Home from "./Pages/Home/Home";
-=======
-import { userAuthContext } from "./context/AuthContext";
+import { useAuthContext } from "./context/AuthContext";
 
 import {Toaster} from 'react-hot-toast';
 // import Home from "./Pages/Home/Home";
 
->>>>>>> e30c84988c3c23520f24210ebd1bae571b8809ce
 // import Navbar from "./Components/Navbar/Navbar";
 
 function App() {
-  const {authUser}= userAuthContext();
+  const {authUser}= useAuthContext();
   return (
     <>
     <div className="p-4 h-screen flex items-center justify-center">
