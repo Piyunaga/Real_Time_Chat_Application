@@ -1,9 +1,9 @@
 import React from 'react'
 
-const messageSkeleton = () => {
+const MessageSkeleton = () => {
   return (
-    <>
-        <div className='flex gap-3 item-center'>
+    <div>
+      <div className='flex gap-3 item-center'>
             <div className='skeleton w-10 h-10 rounded-full shrink-0'></div>
             <div className='flex flex-col gap-1'>
                 <div className='skeleton h-4 w-40'></div>
@@ -16,8 +16,9 @@ const messageSkeleton = () => {
             </div>
             <div className='skeleton w-10 h-10 rounded-full shrink-0'></div>
         </div>
-    </>
+    </div>
   )
 }
 
-export default messageSkeleton
+export default MessageSkeleton;
+
