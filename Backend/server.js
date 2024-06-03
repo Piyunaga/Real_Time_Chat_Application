@@ -6,8 +6,9 @@ import userRoutes from "./routes/userroutes.js"
 import connectToMongodb from "./DB/connectToMongodb.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import { app, server } from "./socket/socket.js";
 
-const app = express();
+
 const PORT = process.env.PORT || 5000;
 
 dotenv.config();
@@ -25,7 +26,7 @@ app.use("/api/users", userRoutes)
 // });
 
 
-app.listen(PORT,() => {
+server.listen(PORT,() => {
     connectToMongodb();
     console.log(`Server is running on port ${PORT}`);
 
